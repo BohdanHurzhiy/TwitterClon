@@ -11,7 +11,7 @@ namespace EntityFrameworkCoreProject
             using (ApplicationContext db = new ApplicationContext())
             {
                 // создаем два объекта User
-                User user1 = new User { Name = "Tom", Age = 33 };
+              /*  User user1 = new User { Name = "Tom", Age = 33 };
                 User user2 = new User { Name = "Alice", Age = 26 };
 
                 // добавляем их в бд
@@ -26,7 +26,7 @@ namespace EntityFrameworkCoreProject
                 foreach (User u in users)
                 {
                     Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
-                }
+                }*/
             }
             Console.Read();
         }

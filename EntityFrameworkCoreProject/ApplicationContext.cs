@@ -14,7 +14,7 @@ namespace EntityFrameworkCoreProject
 
         public ApplicationContext()
         {
-            Database.EnsureCreated();
+        //    Database.EnsureDeleted();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
