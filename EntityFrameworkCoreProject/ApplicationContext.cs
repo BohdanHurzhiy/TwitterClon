@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Collections.Generic;
 
 namespace EntityFrameworkCoreProject
 {
@@ -18,9 +20,15 @@ namespace EntityFrameworkCoreProject
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Country>();
-            modelBuilder.Entity<User>().HasKey(u => u.userIdent);
-            modelBuilder.Entity<User>().HasIndex(u => u.Name).HasFilter("[Name] IS NOT NULL");
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+        }
+    }
+    public class UserConfiguration : IEntityTypeConfiguration<User>
+    {
+        public void Configure(EntityTypeBuilder<User> builder)
+        { 
+            builder.HasKey(u => u.userIdent);
+            builder.HasIndex(u => u.Name).HasFilter("[Name] IS NOT NULL");
         }
     }
 }
