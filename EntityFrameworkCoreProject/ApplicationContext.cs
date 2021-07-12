@@ -1,10 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EntityFrameworkCoreProject
 {
@@ -14,12 +8,19 @@ namespace EntityFrameworkCoreProject
 
         public ApplicationContext()
         {
-        //    Database.EnsureDeleted();
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         { 
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=helloappdb;Trusted_Connection=True;");
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Country>();
+            modelBuilder.Entity<User>().HasKey(u => u.userIdent);
+            modelBuilder.Entity<User>().HasIndex(u => u.Name).HasFilter("[Name] IS NOT NULL");
         }
     }
 }
