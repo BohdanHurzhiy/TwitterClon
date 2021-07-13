@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CheckingCreationOfModels
 {
-    public class Company
+    /*public class Company
     {
         public int Id { get; set; }
         public string Name { get; set; } // название компании
@@ -18,5 +18,5 @@ namespace CheckingCreationOfModels
     {
         public int Id { get; set; }
         public string Name { get; set; }       
-    }
+    }*/
 }
