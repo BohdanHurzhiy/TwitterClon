@@ -1,4 +1,6 @@
-﻿namespace ModelsForTwitter
+﻿using System.Collections.Generic;
+
+namespace ModelsForTwitter
 {
     public class Relationships_user
     {

@@ -4,7 +4,7 @@ namespace ModelsForTwitter
 {
     public class Post
     {
-        public int ID { get; set; }
+        public int ID { get; set; }       
         public int UserId { get; set; }
         public string TextPost { get; set; }
         public int NumberLikes { get; set; }

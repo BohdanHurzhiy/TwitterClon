@@ -18,7 +18,8 @@ namespace ModelsForTwitter
 
 
         public DbTwitterCloneContex()
-        {
+        { 
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -28,8 +29,8 @@ namespace ModelsForTwitter
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           modelBuilder.Entity<User>(UserConfigure);
-           modelBuilder.Entity<Post>(PostConfigure);
+            modelBuilder.Entity<User>(UserConfigure);
+            modelBuilder.Entity<Post>(PostConfigure);
             modelBuilder.Entity<Repost>(RePostConfigure);
         }
         // конфигурация для типа User
@@ -40,7 +41,8 @@ namespace ModelsForTwitter
         // конфигурация для типа Post
         public void PostConfigure(EntityTypeBuilder<Post> builder)
         {
-            
+          
+
         }
         public void RePostConfigure(EntityTypeBuilder<Repost> builder)
         {
