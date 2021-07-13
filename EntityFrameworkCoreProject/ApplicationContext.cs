@@ -10,8 +10,8 @@ namespace EntityFrameworkCoreProject
 
         public ApplicationContext()
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+           // Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -20,15 +20,15 @@ namespace EntityFrameworkCoreProject
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.Entity<Country>();            
+            modelBuilder.ApplyConfiguration(new UserConfiguration());            
         }
     }
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
-        { 
-            builder.HasKey(u => u.userIdent);
-            builder.HasIndex(u => u.Name).HasFilter("[Name] IS NOT NULL");
+        {
+
         }
     }
 }

@@ -12,7 +12,7 @@ namespace EntityFrameworkCoreProject
     [Table("People")]
     public class User
     {
-        public int userIdent { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
         public bool IsMarried { get; set; }

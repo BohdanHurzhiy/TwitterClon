@@ -7,7 +7,7 @@ namespace EntityFrameworkCoreProject.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "People",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -17,14 +17,29 @@ namespace EntityFrameworkCoreProject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_People", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "People",
+                columns: new[] { "Id", "Age", "Name" },
+                values: new object[] { 1, 23, "Tom" });
+
+            migrationBuilder.InsertData(
+                table: "People",
+                columns: new[] { "Id", "Age", "Name" },
+                values: new object[] { 2, 26, "Alice" });
+
+            migrationBuilder.InsertData(
+                table: "People",
+                columns: new[] { "Id", "Age", "Name" },
+                values: new object[] { 3, 28, "Sam" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "People");
         }
     }
 }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFrameworkCoreProject.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210712122817_UpdateUserIsMarried")]
-    partial class UpdateUserIsMarried
+    [Migration("20210712141200_UpdateUser")]
+    partial class UpdateUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,15 +30,32 @@ namespace EntityFrameworkCoreProject.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsMarried")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("People");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 23,
+                            Name = "Tom"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 26,
+                            Name = "Alice"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = 28,
+                            Name = "Sam"
+                        });
                 });
 #pragma warning restore 612, 618
         }
