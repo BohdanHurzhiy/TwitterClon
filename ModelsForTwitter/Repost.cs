@@ -5,7 +5,8 @@ namespace ModelsForTwitter
     public class Repost
     {
         public int ID { get; set; }
-        public int? PostId { get; set; }
+        //public int? RepostId { get; set; }
+        //public int? PostId { get; set; }
         public int UserId { get; set; }        
         public string TextPost { get; set; }
         public int NumberLikes { get; set; }

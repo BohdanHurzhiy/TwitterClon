@@ -5,7 +5,7 @@ namespace ModelsForTwitter
     public class Answer
     {
         public int ID { get; set; }
-        public int? PostId { get; set; }
+        //public int? PostId { get; set; }
         public int UserId { get; set; }
         public string TextAnswer { get; set; }
         public int NumberLikes { get; set; }       
