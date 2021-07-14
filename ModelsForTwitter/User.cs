@@ -4,7 +4,7 @@ namespace ModelsForTwitter
 {
     public class User
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string NameUser { get; set; }
         public string AliasUser { get; set; }
         public string SecondNameUser { get; set; }
@@ -19,5 +19,6 @@ namespace ModelsForTwitter
         public virtual ICollection<LikedAnswer> LikedAnswers { get; set; }
         public virtual ICollection<Relationships_user> RelationshipsFolower { get; set; }
         public virtual ICollection<Relationships_user> RelationshipsFollowed { get; set; }
+        public virtual ICollection<Photos> Photos { get; set; }
     }
 }

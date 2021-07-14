@@ -14,7 +14,7 @@ namespace ModelsForTwitter
         public DbSet<Photos> Photos { get; set; }
         public DbSet<Relationships_user> Relationships { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<Tags_post> Tags_post { get; set; }
+        public DbSet<TagsPost> Tags_post { get; set; }
 
 
         public DbTwitterCloneContex()
@@ -36,7 +36,13 @@ namespace ModelsForTwitter
         // конфигурация для типа User
         public void UserConfigure(EntityTypeBuilder<User> builder)
         {
-            
+        builder.HasData(
+            new User[]
+            {
+                new() {Id = 1, NameUser="Tom", AliasUser = "T", SecondNameUser = "Patison" },
+                new() {Id = 2, NameUser="Adam", AliasUser = "A", SecondNameUser = "Morkovkin" },
+                new() {Id = 3, NameUser="Jopa", AliasUser = "J", SecondNameUser = "Kabanov" }
+            });
         }
         // конфигурация для типа Post
         public void PostConfigure(EntityTypeBuilder<Post> builder)
