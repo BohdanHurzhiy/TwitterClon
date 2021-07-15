@@ -10,6 +10,10 @@ namespace ModelsForTwitter
             {
                 Console.WriteLine("END!!");
             }
+            BaseOperations.CalculateAverageNumberOfLikesPerPost(1);
+            BaseOperations.CalculateMostLikesOnPosts();
+            BaseOperations.CalculateMostLikesOnAnswers();
+           // BaseOperations.CalculateAverageNumberFollowers();
         }
     }
 }
