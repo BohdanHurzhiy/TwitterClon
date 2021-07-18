@@ -21,9 +21,10 @@ namespace ModelsForTwitter
             {
                 var userPosts = twitterClone.Posts
                                 .Where(p => p.UserId == userID)
-                                .Include(l =>l.Likes)
-                                .ToList();
-                var avarageCount = userPosts.Average(p => p.Likes.Count);
+                                .Include(l => l.Likes)
+                                .Select(l => l.Likes.Count).ToList();
+
+                var avarageCount = userPosts.Average();
                 Console.WriteLine(avarageCount);                
             }            
         }
@@ -33,9 +34,9 @@ namespace ModelsForTwitter
             {
                 var countPosts = twitterClone.Posts
                                 .Include(p => p.Likes)
-                                .ToList();
-                                              
-                Console.WriteLine(countPosts.Max(p => p.Likes.Count));
+                                .Select(p => p.Likes.Count).ToList();
+
+                Console.WriteLine(countPosts.Max());
             }
         }
         static public void CalculateMostLikesOnAnswers()
@@ -44,15 +45,10 @@ namespace ModelsForTwitter
             {
                 var countAnswers = twitterClone.Answers
                                 .Include(a => a.Likes)
-                                .ToList();
-                if (countAnswers == null || countAnswers.Count == 0)
-                {
-                    Console.WriteLine("Answers is empty");
-                }
-                else
-                {
-                    Console.WriteLine(countAnswers.Max(a => a.Likes.Count));
-                }
+                                .Select(p => p.Likes.Count).ToList();
+                int? returnAnswer = countAnswers.Count == 0 ? null : countAnswers.Max();
+                Console.WriteLine(returnAnswer);
+                
             }
         }
         static public void CalculateMostRepostInPost()
@@ -61,15 +57,9 @@ namespace ModelsForTwitter
             {
                 var countPosts = twitterClone.Posts
                                 .Include(p => p.RePosts)
-                                .ToList();
-                if (countPosts == null || countPosts.Count == 0)
-                {
-                    Console.WriteLine("Answers is empty");
-                }
-                else
-                {
-                    Console.WriteLine(countPosts.Max(a => a.RePosts.Count));
-                }
+                                .Select(p => p.RePosts.Count).ToList();
+                int? returnAnswer = countPosts.Count == 0 ? null : countPosts.Max();
+                Console.WriteLine(returnAnswer);
             }
         }
         static public void CalculateMostAnswersInPost()
@@ -78,16 +68,11 @@ namespace ModelsForTwitter
             {
                 var countAnswers = twitterClone.Posts
                                 .Include(p => p.Answers)
-                                .ToList();
-                if (countAnswers == null || countAnswers.Count == 0)
-                {
-                    Console.WriteLine("Answers is empty");
-                }
-                else
-                {
-                    Console.WriteLine(countAnswers.Max(a => a.RePosts.Count));
-                }
+                                .Select(p => p.Answers.Count).ToList();
+                int? returnAnswer = countAnswers.Count == 0 ? null : countAnswers.Max();
+                Console.WriteLine(returnAnswer);
             }
+            
         }
         static public void CalculateAverageNumberFollowers()
         {
@@ -95,9 +80,10 @@ namespace ModelsForTwitter
             {
                 var userFollower = twitterClone.Users                                
                                 .Include(f => f.RelationshipsFolower)
+                                .Select(f => f.RelationshipsFolower.Count)
                                 .ToList();
-                var avarageCount = userFollower.Average(f => f.RelationshipsFolower.Count);
-                Console.WriteLine(avarageCount);
+                double? returnAnswer = userFollower.Count == 0 ? null : userFollower.Average();
+                Console.WriteLine(returnAnswer);
             }
         }
         static public void TakeSomeMostPopularUsers(int countUser)
@@ -131,21 +117,18 @@ namespace ModelsForTwitter
             {
                 var tagId = twitterClone.Tags
                                 .Where(t => t.TagsText == tagPost)
-                                .ToList();
-                var postList = twitterClone.Posts
-                                    .Include(t => t.TagsPosts)
-                                    .ThenInclude(t => t.Tags)
-                                    .ToList();
-                var postWithTag = (from post in postList
-                                   from tags in post.TagsPosts
-                                   from tag in tags.Tags
-                                   where tag == tagId[0]
-                                   select post.Id).ToList();
+                                .FirstOrDefault();
 
-                foreach (var post in postWithTag)
-                {
-                    Console.WriteLine(post);
-                }                
+                var postList = twitterClone.TagsPosts
+                                    .Where(t => t.TagId == tagId.Id);
+
+              //  var posts = postList.Select(x => twitterClone.Posts.Where(y => y.Id == x.PostId).FirstOrDefault()).ToList();
+
+                var posts = twitterClone.Posts
+                                    .Where(post =>
+                                    twitterClone.TagsPosts.Any(tp => tp.TagId == tagId.Id && tp.PostId == post.Id)
+                                    )
+                                    .ToList();
             }
         }
     }

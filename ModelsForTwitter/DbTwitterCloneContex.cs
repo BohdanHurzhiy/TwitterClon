@@ -12,7 +12,7 @@ namespace ModelsForTwitter
         public DbSet<Liked> Likeds { get; set; }
         public DbSet<LikedAnswer> LikedsAnswer { get; set; }
         public DbSet<Photos> Photos { get; set; }
-        public DbSet<Relationships_user> Relationships { get; set; }
+        public DbSet<RelationshipsUser> Relationships { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<TagsPost> TagsPosts { get; set; }
 
@@ -97,6 +97,7 @@ namespace ModelsForTwitter
                 new() {Id = 15, UserId = 5, PostId = 2 }
              });
         }
+
 
     }
 }

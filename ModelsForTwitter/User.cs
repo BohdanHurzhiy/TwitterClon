@@ -17,8 +17,8 @@ namespace ModelsForTwitter
         public virtual ICollection<Answer> Answers { get; set; }
         public virtual ICollection<Liked> Likes { get; set; }
         public virtual ICollection<LikedAnswer> LikedAnswers { get; set; }
-        public virtual ICollection<Relationships_user> RelationshipsFolower { get; set; }
-        public virtual ICollection<Relationships_user> RelationshipsFollowed { get; set; }
+        public virtual ICollection<RelationshipsUser> RelationshipsFolower { get; set; }
+        public virtual ICollection<RelationshipsUser> RelationshipsFollowed { get; set; }
         public virtual ICollection<Photos> Photos { get; set; }
     }
 }

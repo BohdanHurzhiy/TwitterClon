@@ -13,6 +13,7 @@ namespace ModelsForTwitter
             BaseOperations.CalculateAverageNumberOfLikesPerPost(1);
             BaseOperations.CalculateMostLikesOnPosts();
             BaseOperations.CalculateMostLikesOnAnswers();
+            BaseOperations.FindPostsWithTag("хуй");
            // BaseOperations.CalculateAverageNumberFollowers();
         }
     }
